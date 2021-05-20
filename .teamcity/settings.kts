@@ -27,7 +27,7 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2020.2"
 
 project {
-
+    vcsRoot(TomcatVcs)
     buildType(Build)
 }
 
@@ -36,7 +36,7 @@ object Build : BuildType({
     description = "SCM Check Out"
 
     vcs {
-        root(DslContext.settingsRoot)
+        root(TomcatVcs)
     }
 
     steps {
@@ -50,4 +50,9 @@ object Build : BuildType({
         vcs {
         }
     }
+})
+
+object TomcatVcs : GitVcsRoot({
+    name = "TomcatVcs"
+    url = "https://github.com/daticahealth/java-tomcat-maven-example"
 })
