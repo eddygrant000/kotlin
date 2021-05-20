@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.v2019_2.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.v2019_2.vcs.GitVcsRoot
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -27,7 +28,9 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2020.2"
 
 project {
-    vcsRoot(TomcatVcs)
+
+    vcsRoot(HttpsGithubComDaticahealthJavaTomcatMavenExample)
+
     buildType(Build)
 }
 
@@ -36,7 +39,8 @@ object Build : BuildType({
     description = "SCM Check Out"
 
     vcs {
-        root(TomcatVcs)
+        root(DslContext.settingsRoot)
+        root(HttpsGithubComDaticahealthJavaTomcatMavenExample)
     }
 
     steps {
@@ -52,7 +56,8 @@ object Build : BuildType({
     }
 })
 
-object TomcatVcs : GitVcsRoot({
-    name = "TomcatVcs"
+object HttpsGithubComDaticahealthJavaTomcatMavenExample : GitVcsRoot({
+    name = "https://github.com/daticahealth/java-tomcat-maven-example"
     url = "https://github.com/daticahealth/java-tomcat-maven-example"
+    branch = "refs/heads/master"
 })
